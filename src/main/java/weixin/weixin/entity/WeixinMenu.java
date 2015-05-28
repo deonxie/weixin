@@ -20,7 +20,7 @@ public class WeixinMenu extends IdEntity{
 	private String name;//菜单标题，不超过16个字节，子菜单不超过40个字节
 	private String type;//菜单的响应动作类型view click
 	private String key;// click等点击类型必须,菜单KEY值，用于消息接口推送，不超过128字节
-	private String url;// view类型必须,网页链接，用户点击菜单可打开链接，不超过256字节
+	// view类型必须,url网页链接，用户点击菜单可打开链接，不超过256字节
 	private String mediaId;//media_id类型和view_limited类型必须,调用新增永久素材接口返回的合法media_id
 	private WeixinMenu parent;//上一级菜单；一级菜单数组，个数应为1~3个
 	private List<WeixinMenu> child;//子级菜单；二级菜单数组，个数应为1~5个
@@ -60,18 +60,6 @@ public class WeixinMenu extends IdEntity{
 	 */
 	public void setKey(String key) {
 		this.key = key;
-	}
-	/**
-	 * @return the url
-	 */
-	public String getUrl() {
-		return url;
-	}
-	/**
-	 * @param url the url to set
-	 */
-	public void setUrl(String url) {
-		this.url = url;
 	}
 	/**
 	 * @return the mediaId

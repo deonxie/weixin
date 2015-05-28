@@ -1,6 +1,5 @@
 package weixin.weixin.util;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -72,19 +71,16 @@ public class ReplyWeixinMsg implements Runnable {
 		List<WeixinAutoReplyMsg> list = WeixinAutoReplyMsgService.findMacthReply(key);
 		for(WeixinAutoReplyMsg reply : list){
 			Map<String ,Object> json = Maps.newHashMap();
-			json.put(WeixinMsgType.MsgField.TO_USER.getField(), 
-					receive.get(WeixinMsgType.MsgField.FROM_USER.getField()));
-			json.put(WeixinMsgType.MsgField.FROM_USER.toString(), 
-					receive.get(WeixinMsgType.MsgField.TO_USER));
-			json.put(WeixinMsgType.MsgField.CREATE_TIME.getField(),
-					(int)(new Date().getTime()/1000));
+			json.put("touser", receive.get(WeixinMsgType.MsgField.FROM_USER.getField()));
 			if(StringUtils.isBlank(reply.getPicUrl())){
-				json.put(WeixinMsgType.MsgField.MSG_TYPE.getField(), 
-						WeixinMsgType.MsgType.TEXT.getType());
-				json.put(WeixinMsgType.MsgField.CONTENT.getField(), reply.getContent());
+				json.put("msgtype", WeixinMsgType.MsgType.TEXT.getType());
+				Map<String, String> item = Maps.newHashMap();
+				item.put("content", reply.getContent());
+				json.put("text", item);
 			}else{
+				json.put("msgtype", "news");
 				List<Map<String, String>> items = Lists.newArrayList();
-				Map<String, String> item = Maps.newHashMap();;
+				Map<String, String> item = Maps.newHashMap();
 				item.put("title", reply.getContent());
 				item.put("picurl", reply.getPicUrl());
 				item.put("url", reply.getUrl());

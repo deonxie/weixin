@@ -110,7 +110,7 @@ public class WeixinMenuService extends GenericService<WeixinMenu,WeixinMenuDao>{
 				items = Maps.newHashMap();
 				items.put("name", wm.getName());
 				items.put("type", "view");
-				items.put("url", wm.getUrl());
+				items.put("url", wm.getKey());
 				List<Map<String, Object>> sublist = parseMenu(wm.getChild());
 				if(sublist !=null && sublist.size()>0)
 					items.put("sub_button", sublist);

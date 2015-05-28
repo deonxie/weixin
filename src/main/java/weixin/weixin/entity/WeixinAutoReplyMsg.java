@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * 微信自动回复消息
@@ -21,6 +22,7 @@ public class WeixinAutoReplyMsg extends IdEntity{
 	private String picUrl;
 	private String url;
 	private Date createDate;
+	private String tmpPic;
 	
 	public static final int STARIT_WITH = 1;
 	public static final int END_WITH = 2;
@@ -112,6 +114,7 @@ public class WeixinAutoReplyMsg extends IdEntity{
 	public void setUrl(String url) {
 		this.url = url;
 	}
+		
 	public boolean checkMsg(String str){
 		if(str==null)
 			return false;
@@ -125,5 +128,18 @@ public class WeixinAutoReplyMsg extends IdEntity{
 		default:
 			return str.equals(key);
 		}
+	}
+	/**
+	 * @return the tmpPic
+	 */
+	@Transient
+	public String getTmpPic() {
+		return tmpPic;
+	}
+	/**
+	 * @param tmpPic the tmpPic to set
+	 */
+	public void setTmpPic(String tmpPic) {
+		this.tmpPic = tmpPic;
 	}
 }

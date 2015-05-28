@@ -40,7 +40,7 @@
 <tr>
 	<td colspan="2">${menu.name }</td>
 	<td>${menu.type eq 'click'?'点击':'超链接' }</td>
-	<td>${menu.key }${menu.url }</td>
+	<td>${menu.key }</td>
 	<td><a href="${ctx }/weixin/menu/delete/${menu.id}" 
 			onclick="return confirmx('确认要删除吗？', this.href)">删除</a></td>
 </tr>
@@ -49,7 +49,7 @@
 		<td style="border-right: 1px solid #ccc;text-align: right;">&nbsp;&nbsp;${menu.name }  》 </td>
 		<td>${sub.name }</td>
 		<td>${sub.type eq 'click'?'点击':'超链接' }</td>
-		<td>${sub.key }${sub.url }</td>
+		<td>${sub.key }</td>
 		<td><a href="${ctx }/weixin/menu/delete/${sub.id}" 
 			onclick="return confirmx('确认要删除吗？', this.href)">删除</a></td>
 	</tr>

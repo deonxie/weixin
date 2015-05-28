@@ -19,13 +19,17 @@ import weixin.weixin.service.WeixinConfigService;
 public class WeixinToken {
 	static Logger logger = LoggerFactory.getLogger(WeixinToken.class);
 	public final static String baseurl = "https://api.weixin.qq.com/";
-	private static String access_token_key = "access_token_key";
+	private final static String access_token_key = "access_token_key";
+	private final static String access_jsapi_key = "access_jsapi_key";
+	private final static String AccessToken = "AccessToken";
+	private final static String JsapiToken = "JsapiToken";
 	private static CacheManager cacheManager;
 	
 	static{
 		try{
 			cacheManager = CacheManager.create(new ClassPathResource("/ehcache/ehcache-weixin.xml").getInputStream());
 			cacheManager.addCache(new Cache(access_token_key, 1, false, false, 7100, 7100));
+			cacheManager.addCache(new Cache(access_jsapi_key, 1, false, false, 7100, 7100));
 		} catch (CacheException e) {
 			logger.error("微信网络访问缓存管理器 加载失败",e);
 		} catch (IOException e) {
@@ -40,18 +44,15 @@ public class WeixinToken {
 	public static String getAccessToken(){
 		String token = null;
 		Cache cache = cacheManager.getCache(access_token_key);
-		Element element = cache.get("AccessToken");
+		Element element = cache.get(AccessToken);
 		if(null == element){
 			token = accessToken();
-			cache.put(new Element("AccessToken", token));
-			String jsapiToken = jsapiToken(token);
-			cache.put(new Element("JsapiToken", jsapiToken));
-			logger.info("微信：AccessToken:{}，jsapiToken:{}",token,jsapiToken);
+			cache.put(new Element(AccessToken, token));
+			logger.info("微信：AccessToken:{}",token);
 			return token;
-		}else{
-			if(null != element.getObjectValue()){
-				token = element.getObjectValue().toString();
-			}
+		}
+		if(null != element.getObjectValue()){
+			token = element.getObjectValue().toString();
 		}
 		return token;
 	}
@@ -61,13 +62,12 @@ public class WeixinToken {
 	 */
 	public static String getJsapiToken(){
 		String jsapiToken = null;
-		Cache cache = cacheManager.getCache(access_token_key);
-		Element element = cache.get("JsapiToken");
+		Cache cache = cacheManager.getCache(access_jsapi_key);
+		Element element = cache.get(JsapiToken);
 		if(null == element){
-			String token = accessToken();
-			cache.put(new Element("AccessToken", token));
+			String token = getAccessToken();
 			jsapiToken = jsapiToken(token);
-			cache.put(new Element("JsapiToken", jsapiToken));
+			cache.put(new Element(JsapiToken, jsapiToken));
 			logger.info("微信：AccessToken:{}，jsapiToken:{}",token,jsapiToken);
 			return jsapiToken;
 		}

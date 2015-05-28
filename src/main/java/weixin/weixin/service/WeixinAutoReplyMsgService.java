@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ch.qos.logback.classic.Logger;
+
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
@@ -49,6 +51,7 @@ public class WeixinAutoReplyMsgService extends GenericService<WeixinAutoReplyMsg
 			if(reply.checkMsg(value))
 				list.add(reply);
 		}
+		System.out.println("msg:"+value+" list:"+list.size());
 		return list;
 	}
 }

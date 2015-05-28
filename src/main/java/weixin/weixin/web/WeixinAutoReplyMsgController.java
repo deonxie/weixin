@@ -48,6 +48,7 @@ public class WeixinAutoReplyMsgController extends GenericController{
 	
 	@RequestMapping("save")
 	public String save(@ModelAttribute("replaymsg")WeixinAutoReplyMsg msg,Model model){
+		
 		ser.save(msg);
 		return REDIRECT+"/autoreplymsg/";
 	}

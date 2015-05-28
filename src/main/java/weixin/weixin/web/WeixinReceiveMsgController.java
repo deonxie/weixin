@@ -26,6 +26,7 @@ import weixin.weixin.entity.WeixinConfig;
 import weixin.weixin.service.WeixinConfigService;
 import weixin.weixin.service.WeixinReceiveMsgService;
 import weixin.weixin.util.SHA1;
+import weixin.weixin.util.WeixinMsgType;
 
 /**
  * 接收各种类型消息消息
@@ -84,14 +85,15 @@ public class WeixinReceiveMsgController extends GenericController{
 						mesage.put(e.getName(), e.getText());
 					}
 					WeixinReceiveMsgService.initTask(mesage);
-					
-					xml = new StringBuffer("<xml><ToUserName><![CDATA[");
-					xml.append(mesage.get("FromUserName")).append("]]></ToUserName><FromUserName><![CDATA[");
-					xml.append(mesage.get("ToUserName")).append("]]></FromUserName><CreateTime>");
-					xml.append(mesage.get("CreateTime")).
-					append("</CreateTime><MsgType><![CDATA[transfer_customer_service]]></MsgType></xml>");
-					return xml.toString();
-					
+					if(WeixinMsgType.MsgType.TEXT.getType().equals(
+							mesage.get(WeixinMsgType.MsgField.MSG_TYPE.getField()))){
+						xml = new StringBuffer("<xml><ToUserName><![CDATA[");
+						xml.append(mesage.get("FromUserName")).append("]]></ToUserName><FromUserName><![CDATA[");
+						xml.append(mesage.get("ToUserName")).append("]]></FromUserName><CreateTime>");
+						xml.append(mesage.get("CreateTime")).
+						append("</CreateTime><MsgType><![CDATA[transfer_customer_service]]></MsgType></xml>");
+						return xml.toString();
+					}
 				}
 			}
 		} catch (IOException e) {

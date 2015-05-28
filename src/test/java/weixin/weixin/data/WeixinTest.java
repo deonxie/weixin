@@ -98,6 +98,7 @@ public class WeixinTest {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+		WeixinToken.getAccessToken();
 	}
 	
 	/**

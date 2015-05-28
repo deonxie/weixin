@@ -103,6 +103,7 @@ public class WeixinUtil {
 	 */
 	public static int createMenu(Map<String,Object> param) throws JSONException{
 		deleteMenu();
+		System.out.println(new JSONObject(param).toString());
 		String result = http.postJson("cgi-bin/menu/create?access_token="+
 				WeixinToken.getAccessToken(), new JSONObject(param).toString());
 		return new JSONObject(result).getInt("errcode");
