@@ -24,7 +24,7 @@
 <ul class="nav nav-tabs">
     <li><a href="${ctx}${baseMapper}">自动回复列表</a></li>
     <li class="active"><a href="#">回复信息
-	    <shiro:hasPermission name="user:edit">${entity.id > 0 ? '修改':'添加'}</shiro:hasPermission>
+	    <shiro:hasPermission name="wxmsg:edit">${entity.id > 0 ? '修改':'添加'}</shiro:hasPermission>
     </a></li>
 </ul>
 <br/>
@@ -58,19 +58,19 @@
 	<div class="control-group">
         <label class="control-label">封面图片:</label>
         <div class="controls">
-        	<input type="hidden" name="picUrl" value="${entity.picUrl }" id="picUrl" class="required"/>
+        	<input type="hidden" name="tmpPic" value="" id="picUrl" />
         	<input type="file" id="ajaxUploadFfile" name="file" class="btn btn-primary" onchange="ajaxSaveImage()" />
-        	<img alt="暂无" src="" style="width: 200px;height: 160px;" id="showimg">
+        	<img alt="暂无" src="${entity.picUrl }" style="width: 200px;height: 160px;" id="showimg">
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">原文URL:</label>
         <div class="controls">
-        	<input type="text" name="url" value="${entity.url }" class="required"/>
+        	<input type="text" name="url" value="${entity.url }" />
         </div>
     </div>
     <div class="form-actions">
-        <shiro:hasPermission name="user:edit">
+        <shiro:hasPermission name="wxmsg:edit">
         <input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;
         </shiro:hasPermission>
         <input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
@@ -91,7 +91,6 @@ function ajaxSaveImage() {
         	if(json[0]){
         		$("#showimg").attr('src','${ctx}/tmp/'+json[1]);
         		$("#picUrl").val(json[1]);
-/*         	alert(json[0]+ json[1]); */
         	}
         }
     });

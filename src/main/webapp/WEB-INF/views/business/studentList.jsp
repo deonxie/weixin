@@ -61,8 +61,8 @@
             <th>收件人</th>
             <th>联系电话</th>
             <th>地址</th>
-            <!-- <th>预报到登记</th>
-            <th>登记时间</th> -->
+            <!-- <th>预报到登记</th>-->
+            <th>创建时间</th> 
             <th>操作</th>
         </tr>
         </thead>
@@ -78,11 +78,11 @@
                 <td>${stud.receiveName }</td>
                 <td>${stud.telNum}</td>
                 <td>${stud.address}</td>
-               <%--  <td>${stud.register eq 0 ?'未报到':'已报到'}</td>
-                <td><fmt:formatDate value="${stud.registerDate}" pattern="yyyy年MM月dd日"/></td> --%>
+               <%--  <td>${stud.register eq 0 ?'未报到':'已报到'}</td>--%>
+                <td><fmt:formatDate value="${stud.createDate}" pattern="yyyy年MM月dd日"/></td> 
                 <td>
                 	<a href="${ctx}${baseMapper}update/${stud.id}">详情</a>
-                    <shiro:hasPermission name="user:edit">
+                    <shiro:hasPermission name="studen:edit">
                     <a href="${ctx}${baseMapper}delete/${stud.id}" onclick="return confirmx('确认要删除吗？', this.href)">删除</a>
                 	</shiro:hasPermission>
                 </td>

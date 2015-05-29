@@ -113,7 +113,8 @@ public class WeixinUtil {
 		if(http ==null)
 			http = new CoreHttpClient(WeixinToken.baseurl);
 		String url = "cgi-bin/message/custom/send?access_token="+WeixinToken.getAccessToken();
-		String result = http.postJson(url, new JSONObject(json).toString());
-		logger.info("发送消息：{}",result);
+		String msg = new JSONObject(json).toString();
+		String result = http.postJson(url, msg);
+		logger.info("发送消息:{},结果：{}",msg,result);
 	}
 }

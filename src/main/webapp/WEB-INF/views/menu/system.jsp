@@ -34,7 +34,7 @@
         <div id="collapse1" class="accordion-body collapse in">
             <div class="accordion-inner">
                 <ul class="nav nav-list">
-                    <li><a href="${ctx}/account/user/" target="mainFrame"><span class="icon-heart"></span>&nbsp;用户管理</a></li>
+                    <li><a href="${ctx}/account/user/" target="mainFrame"><i class="icon-heart"></i>&nbsp;用户管理</a></li>
                     <li><a href="${ctx}/account/role/" target="mainFrame"><i class="icon-heart"></i>&nbsp;角色管理</a></li>
                 </ul>
             </div>

@@ -2,8 +2,11 @@ package weixin.weixin.entity.business;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import weixin.weixin.entity.IdEntity;
 
@@ -26,6 +29,7 @@ public class StudenInfo extends IdEntity{
 	private int register;//0未预报的，1已预报到
 	private Date registerDate;
 	private String info;//操作记录
+	private Date createDate;
 	
 	/**审核通过*/
 	public static final int STATUS_PASS = 1;
@@ -214,6 +218,20 @@ public class StudenInfo extends IdEntity{
 	 */
 	public void setPostcode(String postcode) {
 		this.postcode = postcode;
+	}
+	/**
+	 * @return the createDate
+	 */
+	@Column(updatable=false)
+	@Temporal(TemporalType.DATE)
+	public Date getCreateDate() {
+		return createDate;
+	}
+	/**
+	 * @param createDate the createDate to set
+	 */
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 	
 }

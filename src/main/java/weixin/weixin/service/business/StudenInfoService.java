@@ -1,5 +1,6 @@
 package weixin.weixin.service.business;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -56,6 +57,7 @@ public class StudenInfoService extends GenericService<StudenInfo,StudenInfoDao>{
 		stu.setAddress(setDefault(map.get("地址"),null));
 		stu.setPostcode(setDefault(map.get("邮编"),null));
 		stu.setStatus(StudenInfo.STATUS_PASS);
+		stu.setCreateDate(new Date());
 		return stu;
 	}
 	

@@ -23,12 +23,14 @@
     <li class="active"><a>菜单列表</a></li>
 </ul>
 <div class="breadcrumb form-search">
+<shiro:hasPermission name="wxmenu:edit">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">添加</button>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <button type="button" class="btn btn-primary btn-lg" onclick="createmenu()">同步到微信</button>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <button type="button" class="btn btn-primary btn-lg" onclick="deletemenu()">删除微信菜单</button>
+</shiro:hasPermission>
 </div>
 <tags:message content="${message}"/>
 
@@ -56,7 +58,7 @@
 	</c:forEach>
 </c:forEach>
 </table>
-
+<shiro:hasPermission name="wxmenu:edit">
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -107,5 +109,6 @@
     </div>
   </div>
 </div>
+</shiro:hasPermission>
 </body>
 </html>

@@ -43,6 +43,7 @@
             <th>收件人</th>
             <th>联系电话</th>
             <th>地址</th>
+            <th>创建时间</th> 
             <th>操作</th>
         </tr>
         </thead>
@@ -58,8 +59,9 @@
                 <td>${stud.receiveName }</td>
                 <td>${stud.telNum}</td>
                 <td>${stud.address}</td>
+                <td><fmt:formatDate value="${stud.createDate}" pattern="yyyy年MM月dd日"/></td> 
                 <td>
-                <shiro:hasPermission name="user:edit">
+                <shiro:hasPermission name="studen:edit">
                     <a class="btn btn-primary" href="${ctx}${baseMapper}pass?id=${stud.id }">审核通过</a>
                 </shiro:hasPermission>
                 </td>

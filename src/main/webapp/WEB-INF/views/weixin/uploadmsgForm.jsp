@@ -27,8 +27,8 @@
 <ul class="nav nav-tabs">
     <li><a href="${ctx}${baseMapper}">消息列表</a></li>
     <li class="active"><a href="#">用户
-	    <shiro:hasPermission name="user:edit">${entity.id > 0 ? '修改':'添加'}</shiro:hasPermission>
-	    <shiro:lacksPermission name="user:edit">查看</shiro:lacksPermission>
+	    <shiro:hasPermission name="wxmsg:edit">${entity.id > 0 ? '修改':'添加'}</shiro:hasPermission>
+	    <shiro:lacksPermission name="wxmsg:edit">查看</shiro:lacksPermission>
     </a></li>
 </ul>
 <br/>
@@ -78,7 +78,7 @@
         </div>
     </div>
     <div class="form-actions">
-        <shiro:hasPermission name="user:edit">
+        <shiro:hasPermission name="wxmsg:edit">
         <input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;
         </shiro:hasPermission>
         <input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>

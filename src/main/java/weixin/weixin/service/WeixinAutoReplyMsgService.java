@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ch.qos.logback.classic.Logger;
-
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
@@ -43,6 +41,13 @@ public class WeixinAutoReplyMsgService extends GenericService<WeixinAutoReplyMsg
 	public void save(WeixinAutoReplyMsg entity){
 		super.save(entity);
 		maps.put(entity.getId(), entity);
+	}
+	
+	@Override
+	@Transactional(readOnly=false)
+	public void delete(Long id) {
+		maps.remove(id);
+		super.delete(id);
 	}
 	
 	public static List<WeixinAutoReplyMsg> findMacthReply(String value){

@@ -1,6 +1,7 @@
 package weixin.weixin.web.business;
 
 import java.io.File;
+import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.ServletRequest;
@@ -51,6 +52,7 @@ public class StudenInfoController extends GenericController{
 	@RequiresPermissions("studen:edit")
 	@RequestMapping(value="save",method=RequestMethod.POST)
 	public String save(@ModelAttribute("student")StudenInfo entity,Model model){
+		entity.setStatus(StudenInfo.STATUS_PASS);
 		ser.save(entity);
 		return REDIRECT+"/business/stu/";
 	}
@@ -98,6 +100,8 @@ public class StudenInfoController extends GenericController{
 	public StudenInfo initdata(@RequestParam(value="id",defaultValue="0")long id){
 		if(id>0)
 			return ser.get(id);
-		return new StudenInfo();
+		StudenInfo stu = new StudenInfo();
+		stu.setCreateDate(new Date());
+		return stu;
 	}
 }

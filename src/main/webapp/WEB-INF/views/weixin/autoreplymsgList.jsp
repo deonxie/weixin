@@ -16,7 +16,7 @@
 <body>
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}${baseMapper}">回复信息列表</a></li>
-		<shiro:hasPermission name="user:edit"><li><a href="${ctx}${baseMapper}update/0">添加自动回复信息</a></li></shiro:hasPermission>
+		<shiro:hasPermission name="wxmsg:edit"><li><a href="${ctx}${baseMapper}update/0">添加自动回复信息</a></li></shiro:hasPermission>
 	</ul>
 	<form id="searchForm" action="${ctx}${baseMapper}" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.number+1}"/>

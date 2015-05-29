@@ -103,13 +103,14 @@
 						标题</h4>
 						</div>
 					</div>
-				</div>
+				</div><shiro:hasPermission name="wxmsg:edit">
 				<form id="sendFrm" action="${ctx }/uploadmsg/sendMsgItem" method="post">
 					<input type="hidden" name="cover" id="coverinput"/>
 					<input type="hidden" name="items" id="itemsinput"/><br>
 					<input type="button" class="btn btn-primary" style="width: 319px;"
 					 value="发  送" onclick="submitform()"/>
 				</form>
+				</shiro:hasPermission>
 				<div><font color="red">注意：公众号一天只能发送一次</font></div>
 			</td>
 			<td width="60%">

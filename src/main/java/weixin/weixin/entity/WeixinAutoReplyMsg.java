@@ -142,4 +142,5 @@ public class WeixinAutoReplyMsg extends IdEntity{
 	public void setTmpPic(String tmpPic) {
 		this.tmpPic = tmpPic;
 	}
+	
 }

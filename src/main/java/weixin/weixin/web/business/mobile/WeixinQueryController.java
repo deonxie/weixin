@@ -30,8 +30,8 @@ public class WeixinQueryController extends GenericController{
 			@RequestParam("name")String icdNum,Model model){
 		StudenInfo stu =ser.findInspectNumAndIcdNum(key,icdNum);
 		if(stu == null){
-			model.addAttribute("message", "请检查填入消息！");
-			return REDIRECT+"/business/weixin/query/";
+			model.addAttribute("message", "查询不到您的信息！");
+			return "weixin/mobile/queryForm";
 		}
 		model.addAttribute("entity", stu);
 		return "weixin/mobile/studentInfo";
