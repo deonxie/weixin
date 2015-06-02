@@ -47,8 +47,9 @@
                 <td>${msg.content}</td>
                 <td>${msg.option }</td>
                 <td><fmt:formatDate value="${msg.createDate}" pattern="yyyy年MM月dd日"/></td>
-                <td><a href="${ctx}${baseMapper}update/${msg.id}">详情</a>
-                <shiro:hasPermission name="user:edit">
+                <td>
+                <shiro:hasPermission name="wxmsg:edit">
+                	<a href="${ctx}${baseMapper}update/${msg.id}">详情</a>
                     <a href="${ctx}${baseMapper}delete/${msg.id}" onclick="return confirmx('确认要删除吗？', this.href)" >删除</a>
                 </shiro:hasPermission></td>
             </tr>

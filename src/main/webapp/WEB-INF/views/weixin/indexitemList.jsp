@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglibs.jsp"%>
 <html>
 <head>
-	<title>微信消息管理</title>
+	<title>微信端首页配置管理</title>
 	<meta name="decorator" content="default"/>
 	<%@include file="/WEB-INF/views/include/dialog.jsp" %>
 	<script type="text/javascript">
@@ -15,8 +15,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}${baseMapper}">消息列表</a></li>
-		<shiro:hasPermission name="wxmsg:edit"><li><a href="${ctx}${baseMapper}update/0">添加消息</a></li></shiro:hasPermission>
+		<li class="active"><a href="${ctx}${baseMapper}">配置列表</a></li>
+		<shiro:hasPermission name="wxconfig:edit"><li><a href="${ctx}${baseMapper}update/0">添加配置信息</a></li></shiro:hasPermission>
 	</ul>
 	<form id="searchForm" action="${ctx}${baseMapper}" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.number+1}"/>
@@ -32,25 +32,29 @@
         <thead>
         <tr>
             <th>#</th>
-            <th></th>
+            <th>图片</th>
             <th>标题</th>
-            <th>作者</th>
-            <th>创建日期</th>
+            <th>连接地址</th>
+            <th>类型</th>
+            <th>背景色</th>
+            <th>排序</th>
             <th>操作</th>
         </tr>
         </thead>
 		<tbody>
-        <c:forEach items="${page.content}" var="msg" varStatus="status">
+        <c:forEach items="${page.content}" var="item" varStatus="status">
             <tr>
                 <td>${status.count}</td>
-                <td><img src="${ctx }${msg.picPath}" style="width: 200px;height: 100px;"/></td>
-                <td>${msg.title}&nbsp;</td>
-                <td>${msg.author }&nbsp;</td>
-                <td><fmt:formatDate value="${msg.createTime}" pattern="yyyy年MM月dd日"/></td>
+                <td><img src="${ctxStatic}${item.imgPath}" style="width: 50px;background-color: ${item.color };"/></td>
+                <td>${item.title}</td>
+                <td>${item.url }</td>
+                <td>${item.type eq 0 ?'校园图片展示':'功能项' }</td>
+                <td  style="background-color: ${item.color }">&nbsp;&nbsp;</td>
+                <td>${item.index }</td>
                 <td>
-                <shiro:hasPermission name="wxmsg:edit">
-                	<a href="${ctx}${baseMapper}update/${msg.id}">详情</a>
-                    <a href="${ctx}${baseMapper}delete/${msg.id}" onclick="return confirmx('确认要删除该用户吗？', this.href)" >删除</a>
+                <shiro:hasPermission name="wxconfig:edit">
+                	<a href="${ctx}${baseMapper}update/${item.id}">详情</a>
+                    <a href="${ctx}${baseMapper}delete/${item.id}" onclick="return confirmx('确认要删除吗？', this.href)" >删除</a>
                 </shiro:hasPermission></td>
             </tr>
         </c:forEach>

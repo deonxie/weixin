@@ -49,6 +49,7 @@
             <div class="accordion-inner">
                 <ul class="nav nav-list">
                     <li><a href="${ctx}/weixin/config/" target="mainFrame"><i class="icon-heart"></i>&nbsp;微信配置</a></li>
+                    <li><a href="${ctx}/weixin/indexitem/" target="mainFrame"><i class="icon-heart"></i>&nbsp;微信首页配置</a></li>
                     <li><a href="${ctx}/weixin/menu/" target="mainFrame"><i class="icon-heart"></i>&nbsp;微信按钮配置</a></li>
                 </ul>
             </div>

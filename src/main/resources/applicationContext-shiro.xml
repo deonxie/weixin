@@ -38,6 +38,7 @@
                 /logout = logout
                 /static/** = anon
                 /api/** = anon
+                /mobile/** = anon
                 /receivemsg/** = anon
                 /business/weixin/query/** = anon
                 <!--/account/ = authc  由于使用记住我的功能，对于核心业务必须加上此拦截器才能让用户重新登陆一次 -->

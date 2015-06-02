@@ -19,6 +19,7 @@ import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.multipart.FilePart;
 import org.apache.commons.httpclient.methods.multipart.MultipartRequestEntity;
 import org.apache.commons.httpclient.methods.multipart.Part;
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -91,14 +92,16 @@ public class WeixinTest {
 		//yong jiu
 //		uploadMedia(token,"image","/Users/jlusoft/Desktop/test.png");
 //		sendIMgTextMsg();
-		try {
-		JSONObject json = new JSONObject("{\"errcode\":0,\"errmsg\":\"invalid button name size\"}");
-			System.out.println(json.getString("errcode"));
-			System.out.println(json.getInt("errcode"));
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		WeixinToken.getAccessToken();
+//		try {
+//		JSONObject json = new JSONObject("{\"errcode\":0,\"errmsg\":\"invalid button name size\"}");
+//			System.out.println(json.getString("errcode"));
+//			System.out.println(json.getInt("errcode"));
+//		} catch (JSONException e) {
+//			e.printStackTrace();
+//		}
+//		WeixinToken.getAccessToken();
+		String sf= "/message/mass/sendall/access/token.png";
+		System.out.println(sf.substring(StringUtils.indexOf(sf, "/mass/sendall/")));
 	}
 	
 	/**
