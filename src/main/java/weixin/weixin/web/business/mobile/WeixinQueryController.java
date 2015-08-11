@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import weixin.weixin.entity.business.InfoRecord;
 import weixin.weixin.entity.business.StudenInfo;
+import weixin.weixin.service.business.InfoRecordService;
 import weixin.weixin.service.business.StudenInfoService;
 import weixin.weixin.web.GenericController;
 
@@ -19,6 +21,8 @@ import weixin.weixin.web.GenericController;
 public class WeixinQueryController extends GenericController{
 	@Autowired
 	StudenInfoService ser;
+	@Autowired
+	InfoRecordService infoRecordser;
 	
 	@RequestMapping("")
 	public String query(){
@@ -42,13 +46,26 @@ public class WeixinQueryController extends GenericController{
 			@RequestParam("telNum")String telNum,@RequestParam("address")String address,
 			@RequestParam("receive")String receive,Model model){
 		StudenInfo stu = ser.findInspectNumAndIcdNum(key,icdNum);
-		if(null != stu){
-			stu.setInfo(stu.getReceiveName()+","+stu.getTelNum()+","+stu.getAddress()+"<br>");
+		if(null != stu){//记录旧值
+			InfoRecord record = new InfoRecord();
+			record.setIcdNum(stu.getIcdNum());
+			record.setInspectNum(stu.getInspectNum());
+			record.setOldAddress(stu.getAddress());
+			record.setOldReceiveName(stu.getReceiveName());
+			record.setOldTelNum(stu.getTelNum());
+
 			stu.setReceiveName(receive);
 			stu.setTelNum(telNum);
 			stu.setAddress(address);
 			stu.setStatus(StudenInfo.STATUS_FAIL);
+			stu.setIsupdate(StudenInfo.IS_UPDATE);
 			ser.save(stu);
+//			记录修改后的新值
+			record.setAddress(address);
+			record.setReceiveName(receive);
+			record.setTelNum(telNum);
+			record.setCreateDate(new Date());
+			infoRecordser.save(record);
 			
 			model.addAttribute("message", "修改成功！");
 		}

@@ -4,6 +4,7 @@
 <head>
     <title>微官网</title>
     <meta name="decorator" content="mobile"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <style type="text/css">
 	.row div{padding: 10px;}
 	img{width: 100%;}

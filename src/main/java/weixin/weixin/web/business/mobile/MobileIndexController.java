@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 import weixin.weixin.entity.IndexItem;
 import weixin.weixin.service.IndexItemService;
@@ -27,5 +27,10 @@ public class MobileIndexController extends GenericController {
 		model.addAttribute("topImgs", topImgs);
 		model.addAttribute("itemImgs",itemImgs);
 		return "weixin/mobile/index";
+	}
+	
+	@RequestMapping("menu")
+	public String files(@RequestParam("name")String jspfile){
+		return "weixin/mobile/"+jspfile;
 	}
 }

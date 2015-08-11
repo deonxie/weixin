@@ -45,14 +45,21 @@
 			<label>考号：</label><input type="text" name="search_LIKE_inspectNum" class="input-small" value="${param.search_LIKE_inspectNum}"/>
             &nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>&nbsp;&nbsp;&nbsp;&nbsp;
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">导入</button>
+            <a href="${ctx}${baseMapper}export" class="btn btn-primary" >导出</a>
+            <shiro:hasPermission name="studen:edit">
+            <button class="btn btn-danger" onclick="deleteIds()">批量删除</button>
+            <a href="${ctx}${baseMapper}deleteall" class="btn btn-danger" 
+            onclick="return confirmx('确认要删除所有学生录取数据吗？', this.href)">删除所有数据</a>
+            </shiro:hasPermission>
 		</div>
 	</form>
 
 	<tags:message content="${message}"/>
+	<form id="deleteFrm" action="${ctx}${baseMapper}deleteIds" method="post">
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
         <thead>
         <tr>
-            <th>#</th>
+            <th>#<label><input type="checkbox" onchange="chooseall(this)">全选</label></th>
             <th>姓名</th>
             <td>身份证号</td>
             <th>考生号</th>
@@ -69,7 +76,7 @@
 		<tbody>
         <c:forEach items="${page.content}" var="stud" varStatus="status">
             <tr>
-                <td>${status.count}</td>
+                <td><label><input name="ids" type="checkbox" value="${stud.id}">${status.count}</label> </td>
                 <td>${stud.name}</td>
                 <td>${stud.icdNum}</td>
                 <td>${stud.inspectNum}</td>
@@ -90,12 +97,14 @@
         </c:forEach>
 		</tbody>
 	</table>
+	</form>
     <div class="row">
         <ul class="pager">
             <c:if test="${!pageRequest.prePage}">
                 <li class=" disabled"><a href="#">上一页</a></li>
             </c:if>
             <c:if test="${pageRequest.prePage}">
+            	<li class=" "><a href="#" onClick="page(0)">首页</a></li>
                 <li class=""><a href="#" id="prePage"
                                 onClick="page(${page.number-1})">上一页</a></li>
             </c:if>
@@ -107,6 +116,7 @@
             <c:if test="${pageRequest.nextPage}">
                 <li class=""><a href="#" id="nextPage"
                                 onclick="page(${page.number+2})">下一页</a></li>
+                                <li class=" "><a href="#" onClick="page(${page.totalPages})">尾页</a></li>
             </c:if>
         </ul>
     </div>
@@ -136,6 +146,19 @@
 	      </div>
     </div>
   </div>
+  <script type="text/javascript">
+  function chooseall(obj){
+	  $(":checkbox[name='ids']").each(function(){$(this).attr('checked',obj.checked);});
+  }
+  
+  function deleteIds(){
+	 if($(":checked[name='ids']").size()>0){
+		 if(window.confirm("确定要删除吗？"))
+		 	$("#deleteFrm").submit();
+	 }else
+	  alert("请选择要删除的数据");
+  }
+  </script>
 </div>
 </body>
 </html>

@@ -24,12 +24,12 @@ public class WeixinUtil {
 	 * @return
 	 */
 	public static String uploadImg(String imgpath){
-			HttpClient httpClient = new HttpClient();
-			PostMethod postMethod = new PostMethod("https://api.weixin.qq.com/cgi-bin/material/add_material?access_token="
-					+ WeixinToken.getAccessToken());
-			postMethod.addRequestHeader("Connection", "Keep-Alive");
-			postMethod.addRequestHeader("Cache-Control", "no-cache");
-			postMethod.addRequestHeader("content-type", "multipart/form-data");
+		HttpClient httpClient = new HttpClient();
+		PostMethod postMethod = new PostMethod("https://api.weixin.qq.com/cgi-bin/material/add_material?access_token="
+				+ WeixinToken.getAccessToken());
+		postMethod.addRequestHeader("Connection", "Keep-Alive");
+		postMethod.addRequestHeader("Cache-Control", "no-cache");
+		postMethod.addRequestHeader("content-type", "multipart/form-data");
 			
 		try {
 			File file = new File(imgpath);

@@ -29,6 +29,7 @@ public class StudenInfo extends IdEntity{
 	private int register;//0未预报的，1已预报到
 	private Date registerDate;
 	private String info;//操作记录
+	private int isupdate;//是否修改过
 	private Date createDate;
 	
 	/**审核通过*/
@@ -39,6 +40,10 @@ public class StudenInfo extends IdEntity{
 	public static final int REGISTERED = 1;
 	/**未预报的*/
 	public static final int REGISTERING = 0;
+	/**已修改过*/
+	public static final int IS_UPDATE = 1;
+	/**未修改过*/
+	public static final int NOT_UPDATE = 0;
 	/**
 	 * @return the name
 	 */
@@ -114,6 +119,7 @@ public class StudenInfo extends IdEntity{
 	/**
 	 * @return the address
 	 */
+	@Column(columnDefinition="text")
 	public String getAddress() {
 		return address;
 	}
@@ -232,6 +238,19 @@ public class StudenInfo extends IdEntity{
 	 */
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+	/**
+	 * @return the isupdate
+	 */
+	@Column(columnDefinition="Integer default 0")
+	public int getIsupdate() {
+		return isupdate;
+	}
+	/**
+	 * @param isupdate the isupdate to set
+	 */
+	public void setIsupdate(int isupdate) {
+		this.isupdate = isupdate;
 	}
 	
 }

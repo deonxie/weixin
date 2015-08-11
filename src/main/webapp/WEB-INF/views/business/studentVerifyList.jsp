@@ -27,6 +27,7 @@
             <label>姓名：</label><input type="text" name="search_LIKE_name" class="input-small" value="${param.search_LIKE_name}"/>
 			<label>考号：</label><input type="text" name="search_LIKE_inspectNum" class="input-small" value="${param.search_LIKE_inspectNum}"/>
             &nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="${ctx}${baseMapper}validExport" class="btn btn-primary" >导出</a>
 		</div>
 	</form>
 

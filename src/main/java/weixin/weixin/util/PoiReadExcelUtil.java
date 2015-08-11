@@ -91,13 +91,13 @@ public class PoiReadExcelUtil {
 			row = sheet.getRow(i);
 			if(null == row || row.getFirstCellNum() == -1)
 				continue;
-			if(!keycol){
+			if(!keycol){//读取第一行的标题列
 				int lastCol = row.getLastCellNum();
 				for(int col=0;col<lastCol;col++){
 					columnNames.put(col+"", getCellValue(row.getCell(col)));
 				}
 				keycol = true;
-			}else{
+			}else{//读取非标题列的数据行
 				int lastCol = row.getLastCellNum();
 				columnData = Maps.newHashMap();
 				for(int col=0;col<lastCol;col++){
