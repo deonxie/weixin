@@ -21,11 +21,11 @@
   <div class="mydiv" style="width: 90%;margin-left: auto;margin-right: auto;" >
   	<img alt="logo" src="${ctxStatic }/images/kegan_logo.jpg" width="100%" style="width: 100%;">
 	<div class="myform-group"><br>
-	<input type="text" name="key" placeholder="请输入考生号" class="required"/>
+	<input type="text" name="key" placeholder="请输入考生号" class="required" style="height: 33px;"/>
 	</div><div class="myform-group">
-	<input type="text" name="name" placeholder="请输入身份证号码" class="required"/>
+	<input type="text" name="name" placeholder="请输入身份证号码" class="required" style="height: 33px;"/>
 	</div><div class="myform-group">
-	<button type="submit" class="btn btn-primary" style="width: 90%;">查   询</button>
+	<button type="submit" class="btn btn-primary" style="width: 90%;height: 43px;">查   询</button>
 	</div><div class="myform-group">
   	<font color="red">${message }</font>
 	</div>

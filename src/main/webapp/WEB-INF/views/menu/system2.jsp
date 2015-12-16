@@ -35,7 +35,7 @@
             <div class="accordion-inner">
                 <ul class="nav nav-list">
                     <li><a href="${ctx}/business/stu/" target="mainFrame"><i class="icon-heart icon-white"></i>&nbsp;学生信息</a></li>
-                    <li><a href="${ctx}/business/stu/passlist" target="mainFrame"><i class="icon-heart icon-white"></i>学生审核信息</a></li>
+                   <%--  <li><a href="${ctx}/business/stu/passlist" target="mainFrame"><i class="icon-heart icon-white"></i>学生审核信息</a></li> --%>
                 </ul>
             </div>
         </div>

@@ -19,9 +19,9 @@
   </div>
   <div class="panel-body" >
   	<div style="width: 90%;margin-left: auto;margin-right: auto;">
-  	<form action="${ctx}${baseMapper}updateicd" method="post">
+<%--   	<form action="${ctx}${baseMapper}updateicd" method="post">
 		<input type="hidden" name="key" value="${entity.inspectNum }" />
-		<input type="hidden" name="name" value="${entity.icdNum }" />
+		<input type="hidden" name="name" value="${entity.icdNum }" /> --%>
     <table class="table table-broder">
     	<tr><td width="35%"><b>考生姓名:</b></td><td width="65%">${entity.name}</td></tr>
     	<tr><td><b>考&nbsp; 生&nbsp; 号:</b></td><td>${entity.inspectNum}</td></tr>
@@ -29,6 +29,12 @@
     	<tr><td><b>录取院系:</b></td><td>${entity.type}</td></tr>
     	<tr><td><b>录取专业:</b></td><td>${entity.major}</td></tr>
     	<tr><td colspan="2" align="center" style="text-align: center;"><b>录取通知书邮寄信息</b></td></tr>
+    	<tr><td><b>收&nbsp; 件&nbsp; 人:</b></td><td>${entity.receiveName}</td></tr>
+    	<tr><td><b>联系电话:</b></td><td>${entity.telNum}</td></tr>
+    	<tr><td><b>邮寄地址:</b></td><td>${entity.address}</td></tr>
+    	<tr><td><b>邮编:</b></td><td>${entity.postcode}</td></tr>
+    	
+    	<%-- <tr><td colspan="2" align="center" style="text-align: center;"><b>录取通知书邮寄信息</b></td></tr>
     	<tr><td><b>收&nbsp; 件&nbsp; 人:</b></td>
     	<td><span>${entity.receiveName}</span>
     		<input type="text" name="receive" placeholder="请输入收件人" value="${entity.receiveName }" class="required"/>
@@ -49,8 +55,8 @@
     		<button class="btn btn-primary" onclick="showupdate(this)" style="width: 100%;margin-top: 15px;">修正联系方式</button>
     		<input type="submit" class="btn btn-primary" style="width: 100%;margin-top: 15px;" value="保    存"/>
     	</td></tr>
+    </form> --%>
     </table>
-    </form>
 	</div>
   </div>
 </div>
